@@ -1,0 +1,7 @@
+---
+  - hosts: all
+    tasks:
+    - shell: echo 'ansible working on remote machine'
+      register: test
+
+    - debug: msg="the echo was {{ test.stdout }}"
