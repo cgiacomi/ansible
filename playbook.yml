@@ -1,7 +1,11 @@
 ---
-  - hosts: all
-    tasks:
-    - shell: echo 'ansible working on remote machine'
-      register: test
+# Main ansible playbook
 
-    - debug: msg="the echo was {{ test.stdout }}"
+- hosts: all
+  become: yes
+
+  tasks:
+    - include: 'tasks/install_nginx.yml'
+
+  handlers:
+    - include: 'handlers/main.yml'
