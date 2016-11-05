@@ -2,6 +2,7 @@
 # Installs NGINX and configures it accordingly
 
 - name: Installs nginx web server
+  become: yes
   apt: pkg=nginx state=installed update_cache=true
   notify:
     - start nginx

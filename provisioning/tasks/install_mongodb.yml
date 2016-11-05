@@ -1,0 +1,25 @@
+---
+# Installs MongoDb and configures it accordingly
+# step1 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+# step2 echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+# step3 sudo apt-get update
+# step4 sudo apt-get install -y mongodb-org
+# step5 sudo service mongod start
+
+- name: get apt key
+  become: yes
+  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=EA312927
+
+- name: create mongodb-org-3.2.list if it does not exist
+  become: yes
+  file: path=/etc/apt/sources.list.d/mongodb-org-3.2.list state=touch
+
+- name: add to mongodb-org-3.2.list
+  become: yes
+  lineinfile: dest=/etc/apt/sources.list.d/mongodb-org-3.2.list line="deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse"
+
+- name: install mongo db
+  become: yes
+  apt: name=mongodb-org update_cache=yes
+  notify:
+    - start mongodb

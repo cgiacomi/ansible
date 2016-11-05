@@ -2,10 +2,10 @@
 # Main ansible playbook
 
 - hosts: all
-  become: yes
 
   tasks:
     - include: 'tasks/install_nginx.yml'
+    - include: 'tasks/install_mongodb.yml'
 
   handlers:
     - include: 'handlers/main.yml'
