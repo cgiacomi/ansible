@@ -1,0 +1,83 @@
+---
+# Installs Nodejs as non root user
+# https://degreesofzero.com/article/how-to-install-nodejs-as-a-non-root-user.html
+
+- name: Run "apt-get update"
+  become: yes
+  apt:
+    update_cache: yes
+
+
+- name: Installs latest g++
+  become: yes
+  apt: name=g++
+
+
+- name: Install make
+  become: yes
+  apt: name=make
+
+
+- name: Create nodejs user for node installation
+  #password generation should be run on a similar machine, macOS does not create the correct value
+  #python -c 'import crypt; print crypt.crypt("hello", "$1$SomeSalt$")'
+  become: yes
+  user: name=nodejs comment="Nodejs non root user" createhome=yes password=$1$SomeSalt$L9W/KYWMIdn7AfcMZZVeU0
+
+
+- name: Create .npmrc file as nodejs user in homedir
+  become: yes
+  become_user: nodejs
+  lineinfile: dest=~/.npmrc create=yes line='{{item}}'
+  with_items:
+    - 'root = /home/nodejs/.local/lib/node_modules'
+    - 'binroot = /home/nodejs/.local/bin'
+    - 'manroot = /home/nodejs/.local/share/man'
+
+
+- name: Create .local directory as nodejs user in homedir
+  become: yes
+  become_user: nodejs
+  file: path=~/.local state=directory
+
+
+- name: Download and unarchive nodejs sources as nodejs user in homedir
+  become: yes
+  become_user: nodejs
+  unarchive: src=https://nodejs.org/dist/v6.9.1/node-v6.9.1.tar.gz dest=~/ remote_src=yes
+
+
+- name: Configure the nodejs build
+  become: yes
+  become_user: nodejs
+  command: ./configure --prefix=~/.local
+  args:
+    chdir: ~/node-v6.9.1
+
+
+- name: Run make for the nodejs build
+  become: yes
+  become_user: nodejs
+  command: make
+  args:
+    chdir: ~/node-v6.9.1
+
+
+- name: Install the nodejs build
+  become: yes
+  become_user: nodejs
+  command: make install
+  args:
+    chdir: ~/node-v6.9.1
+
+
+- name: Symlink .node_modules for nodejs user
+  become: yes
+  become_user: nodejs
+  file: src=~/.local/lib/node_modules dest=~/.node_modules state=link
+
+
+- name: Add npm to nodejs user's PATH
+  become: yes
+  become_user: nodejs
+  lineinfile: dest=~/.profile line="export PATH=$HOME/.local/bin:$PATH"

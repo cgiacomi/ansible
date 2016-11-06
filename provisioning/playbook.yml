@@ -6,6 +6,7 @@
   tasks:
     - include: 'tasks/install_nginx.yml'
     - include: 'tasks/install_mongodb.yml'
+    - include: 'tasks/install_nodejs.yml'
 
   handlers:
-    - include: 'handlers/main.yml'
+    #- include: 'handlers/main.yml'

@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   # Use :ansible or :ansible_local to
   # select the provisioner of your choice
@@ -56,9 +56,9 @@ Vagrant.configure(2) do |config|
     #vb.gui = true
 
     # Customize the amount of memory on the VM:
-    vb.memory = "1536"
+    vb.memory = "2048"
     vb.name = "devmachine"
-    vb.cpus = "2"
+    vb.cpus = "3"
   end
   #
   # View the documentation for the provider you are using for more
