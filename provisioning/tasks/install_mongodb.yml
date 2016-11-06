@@ -6,19 +6,23 @@
 # step4 sudo apt-get install -y mongodb-org
 # step5 sudo service mongod start
 
-- name: get apt key
+- name: Get apt key for Mongodb 3.2
   become: yes
   apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=EA312927
 
-- name: create mongodb-org-3.2.list if it does not exist
-  become: yes
-  file: path=/etc/apt/sources.list.d/mongodb-org-3.2.list state=touch
 
-- name: add to mongodb-org-3.2.list
-  become: yes
-  lineinfile: dest=/etc/apt/sources.list.d/mongodb-org-3.2.list line="deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse"
+#TODO: Remove and replace with create key in lineinfile in next task
+# - name: Create mongodb-org-3.2.list if it does not exist
+#   become: yes
+#   file: path=/etc/apt/sources.list.d/mongodb-org-3.2.list state=touch
 
-- name: install mongo db
+
+- name: Add to mongodb-org-3.2.list
+  become: yes
+  lineinfile: dest=/etc/apt/sources.list.d/mongodb-org-3.2.list line="deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse" create=yes
+
+
+- name: Install mongo db
   become: yes
   apt: name=mongodb-org update_cache=yes
   notify:

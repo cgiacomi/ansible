@@ -81,3 +81,9 @@
   become: yes
   become_user: nodejs
   lineinfile: dest=~/.profile line="export PATH=$HOME/.local/bin:$PATH"
+
+
+- name: Clean up download directory
+  become: yes
+  become_user: nodejs
+  file: path=~/node-v6.9.1 state=absent

@@ -60,6 +60,9 @@ Vagrant.configure(2) do |config|
     vb.name = "devmachine"
     vb.cpus = "3"
   end
+
+  config.vm.post_up_message = "DEVMACHINE is up and running. http://loc1.devmachine.io"
+  
   #
   # View the documentation for the provider you are using for more
   # information on available options.
