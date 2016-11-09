@@ -1,0 +1,14 @@
+---
+# Installs PM2 globally https://github.com/Unitech/pm2
+
+- name: Install PM2 globally via npm
+  become: yes
+  become_user: nodejs
+  shell: "source ~/.profile && npm install pm2 -g"
+  args:
+     executable: /bin/bash
+
+
+- name: Installing startup script
+  #Ensure /etc/init.d/pm2-init.sh contains the correct line: export PM2_HOME="/home/<your_user>/.pm2
+  shell: sudo su -c "env PATH=$PATH:/home/nodejs/.local/bin pm2 startup linux -u nodejs --hp /home/nodejs"
