@@ -63,7 +63,7 @@ Vagrant.configure(2) do |config|
 
 
   config.vm.post_up_message = File.open(
-    File.join(File.dirname(__FILE__), 'provisioning/splashscreen'),'r'
+    File.join(File.dirname(__FILE__), 'splashscreen'),'r'
   ).read
 
   #
