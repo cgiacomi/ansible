@@ -2,12 +2,17 @@
 # Main ansible playbook
 
 - hosts: all
+  # pre_tasks:
+  #   - name: 'install python2'
+  #     raw: sudo apt-get -y install python-simplejson
 
   tasks:
-    - include: 'tasks/install_nginx.yml'
-    - include: 'tasks/install_mongodb.yml'
-    - include: 'tasks/install_nodejs.yml'
-    - include: 'tasks/install_pm2.yml'
+    - include: 'tasks/create_user.yml'
+    - include: 'tasks/ssh_settings.yml'
+    #- include: 'tasks/install_nginx.yml'
+    # - include: 'tasks/install_mongodb.yml'
+    # - include: 'tasks/install_nodejs.yml'
+    # - include: 'tasks/install_pm2.yml'
 
   handlers:
-    - include: 'handlers/main.yml'
+    # - include: 'handlers/main.yml'

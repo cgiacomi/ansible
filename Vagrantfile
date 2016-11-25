@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "src/", "/var/website", owner: "nodejs", group: "nodejs"
+  config.vm.synced_folder "./src/", "/var/website", owner: "demo", group: "demo"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -61,7 +61,10 @@ Vagrant.configure(2) do |config|
     vb.cpus = "3"
   end
 
-  config.vm.post_up_message = "DEVMACHINE is up and running. http://loc1.devmachine.io"
+
+  config.vm.post_up_message = File.open(
+    File.join(File.dirname(__FILE__), 'provisioning/splashscreen'),'r'
+  ).read
 
   #
   # View the documentation for the provider you are using for more

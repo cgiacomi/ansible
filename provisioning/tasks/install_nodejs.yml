@@ -81,14 +81,3 @@
   become: yes
   become_user: nodejs
   lineinfile: dest=~/.profile line="export PATH=$HOME/.local/bin:$PATH"
-
-
-# - name: Clean up download directory
-# TODO: Only in production, otherwise vagrant provision will have to rebuild everything
-#   become: yes
-#   become_user: nodejs
-#   file: path=~/node-v6.9.1 state=absent
-
-
-# DEBUG messages
-#- debug: var=out.stdout_lines
