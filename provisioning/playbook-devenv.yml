@@ -4,9 +4,8 @@
 
 - hosts: all
 
-  vars:
-    - root_password: 'HASHED_PASSWORD'
-    - remote_password: 'HASHED_PASSWORD'
+  #vars:
+  # - example_var: 'value'
 
   # vars_files:
   #   - pathto/vars.yml

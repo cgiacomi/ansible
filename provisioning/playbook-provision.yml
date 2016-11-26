@@ -5,8 +5,9 @@
 - hosts: all
 
   vars:
-    - root_password: 'HASHED_PASSWORD'
-    - remote_password: 'HASHED_PASSWORD'
+    - ssh_port: '22'
+    - user_name: 'demo'
+    - user_password: 'hello'
 
   # vars_files:
   #   - pathto/vars.yml

@@ -1,5 +1,0 @@
-[webservers]
-web3 ansible_ssh_host=10.0.0.1
-
-[dbservers]
-web2 ansible_ssh_host=10.0.0.1
