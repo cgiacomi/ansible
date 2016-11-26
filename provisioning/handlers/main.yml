@@ -2,6 +2,17 @@
 # Handler for the webtier: handlers are called by other plays.
 # See http://docs.ansible.com/playbooks_intro.html for more information about handlers.
 
+
 - name: start nginx
   become: yes
   service: name=nginx state=started
+
+
+- name: start mongodb
+  become: yes
+  service: name=mongod state=started
+
+
+- name: restart ssh
+  become: yes
+  service: name=sshd state=restarted

@@ -1,18 +1,29 @@
 ---
+# Playbook to provision the server
+# so that the defautl server config is totally automated
 
-- hosts: webservers
+- hosts: all
 
-  vars_files:
-    - environments/staging/group_vars
+  vars:
+    - root_password: 'HASHED_PASSWORD'
+    - remote_password: 'HASHED_PASSWORD'
+
+  # vars_files:
+  #   - pathto/vars.yml
 
   # pre_tasks:
   #   - shell: echo 'hello'
 
-  roles:
-     - server
+  # roles:
+  #    - server
 
-  # tasks:
-  #   - shell: echo 'still busy'
-  #
+  tasks:
+    - include: 'tasks/create_user.yml'
+    - include: 'tasks/setup_ssh.yml'
+    # - include: 'tasks/setup_firewall.yml'
+
   # post_tasks:
   #   - shell: echo 'goodbye'
+
+  handlers:
+    - include: 'handlers/main.yml'

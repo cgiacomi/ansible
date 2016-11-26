@@ -1,8 +1,0 @@
----
-# Handler for the webtier: handlers are called by other plays.
-# See http://docs.ansible.com/playbooks_intro.html for more information about handlers.
-
-
-- name: start mongodb
-  become: yes
-  service: name=mongod state=started
