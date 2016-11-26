@@ -1,0 +1,13 @@
+---
+# Main ansible playbook
+
+- hosts: all
+
+  tasks:
+    - include: 'tasks/install_nginx.yml'
+    - include: 'tasks/install_mongodb.yml'
+    - include: 'tasks/install_nodejs.yml'
+    - include: 'tasks/install_pm2.yml'
+
+  handlers:
+    # - include: 'handlers/main.yml'

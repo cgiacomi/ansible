@@ -1,0 +1,18 @@
+---
+
+- hosts: webservers
+
+  vars_files:
+    - environments/staging/group_vars
+
+  # pre_tasks:
+  #   - shell: echo 'hello'
+
+  roles:
+     - server
+
+  # tasks:
+  #   - shell: echo 'still busy'
+  #
+  # post_tasks:
+  #   - shell: echo 'goodbye'
