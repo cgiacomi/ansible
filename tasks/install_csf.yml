@@ -1,0 +1,38 @@
+---
+# Installs CSF and setup up the appropriate ports and settings
+# to the firewall
+
+- name: Check if CSF is already installed
+  command: csf -v
+  register: csf_present
+  ignore_errors: true
+  changed_when: false
+
+
+- name: Create temp dir
+  file: path=/tmp/csf state=directory
+  when: csf_present|failed
+
+
+- name: Download CSF and unarchive files
+  unarchive: src=https://download.configserver.com/csf.tgz dest=/tmp/csf remote_src=yes
+  when: csf_present|failed
+
+
+- name: Disable UFW if present
+  become: yes
+  command: ufw disable
+  ignore_errors: yes
+
+
+- name: Install CSF on server
+  become: yes
+  command: sh install.sh
+  args:
+    chdir: /tmp/csf/csf
+  when: csf_present|failed
+
+
+- name: Test if needed modules are present
+  become: yes
+  command: perl /usr/local/csf/bin/csftest.pl

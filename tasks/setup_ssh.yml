@@ -3,7 +3,7 @@
 # password authentication
 
 - name: Change SSH port number
-  lineinfile: dest=/etc/ssh/sshd_config regexp="^Port 22" line="Port 22"
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^Port 22" line="Port {{ ssh_port }}"
   become: yes
 
 
@@ -23,7 +23,7 @@
 
 
 - name: Allow default user
-  lineinfile: dest=/etc/ssh/sshd_config insertafter=EOF line="AllowUsers demo vagrant"
+  lineinfile: dest=/etc/ssh/sshd_config insertafter=EOF line="AllowUsers {{ allowed_users }}"
   become: yes
-  notify:
-    - start ssh
+  # notify:
+  #   - start ssh
