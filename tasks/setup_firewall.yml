@@ -1,0 +1,61 @@
+---
+# Setup CSF
+
+- name: Setup CFS TCP ports IN 53,80,443,8443,9418,25069
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_IN =" line="TCP_IN = \"53,80,443,8443,9418,25069\""
+  become: yes
+
+
+- name: Setup CFS TCP ports OUT 53,80,443,8443,9418,25069
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_OUT =" line="TCP_OUT = \"53,80,443,8443,9418,25069\""
+  become: yes
+
+
+- name: Setup CFS UDP ports IN 53
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53\""
+  become: yes
+
+
+- name: Setup CFS UDP ports OUT 53,123
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53,123\""
+  become: yes
+
+
+- name: Allow ICMP_IN
+  lineinfile: dest=/etc/csf/csf.conf regexp="^ICMP_IN =" line="ICMP_IN = \"1\""
+  become: yes
+
+
+- name: Disable IPV6
+  lineinfile: dest=/etc/csf/csf.conf regexp="^IPV6_SPI =" line="IPV6_SPI = \"1\""
+  become: yes
+
+
+- name: Setup CFS TCP6 ports IN 53,80,443,9418,25069
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_IN =" line="TCP_IN = \"53,80,443,8443,9418,25069\""
+  become: yes
+
+
+- name: Setup CFS TCP6 ports OUT 53,80,443,9418,25069
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_OUT =" line="TCP_OUT = \"53,80,443,8443,9418,25069\""
+  become: yes
+
+
+- name: Setup CFS UDP6 ports IN 53
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53\""
+  become: yes
+
+
+- name: Setup CFS UDP6 ports OUT 53,123
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53,123\""
+  become: yes
+
+
+- name: Disable TESTING
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TESTING =" line="TESTING = \"1\"" #TODO: switch to 0
+  become: yes
+  # notify:
+  #   - restart csf
+
+
+#csf -r

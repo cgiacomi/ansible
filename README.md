@@ -1,9 +1,6 @@
-# devmachine
+# Ansible
 
-Sample vagrant box with ansible provisioning.
+Sample ansible tasks
 
-- mongodb 3.2
 
-- nginx
-
-- nodejs as non root
+ansible-playbook -i inventory/development playbook-provision.yml

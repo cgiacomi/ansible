@@ -10,4 +10,7 @@
 # Copies the key from the user who is running ansible to the remote machine user
 - name: Add ssh public key to account authorized_keys file
   authorized_key: user={{ user_name }} key="{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
-  become: yes
+  #become: yes
+
+
+#- debug: var=username_on_the_host

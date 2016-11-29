@@ -26,4 +26,4 @@
   lineinfile: dest=/etc/ssh/sshd_config insertafter=EOF line="AllowUsers {{ allowed_users }}"
   become: yes
   # notify:
-  #   - start ssh
+  #   - restart ssh

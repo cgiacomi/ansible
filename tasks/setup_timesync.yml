@@ -1,0 +1,13 @@
+---
+# Installs Time synch on the server
+
+- name: Set timezone to Europe/Copenhagen
+  timezone: name=Europe/Copenhagen
+  notify:
+    - restart cron
+
+
+- name: Install NTP
+  apt: name=ntp update-cache=yes
+  notify:
+    - restart ntp
