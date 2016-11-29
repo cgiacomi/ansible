@@ -1,0 +1,13 @@
+---
+# Installs Time synch on the server
+
+- name: Set timezone to Europe/Rome
+  timezone: name=Europe/Rome
+  notify:
+    - restart cron
+
+
+- name: Install NTP
+  apt: name=ntp update-cache=yes
+  notify:
+    - restart ntp

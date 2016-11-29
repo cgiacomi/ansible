@@ -1,0 +1,16 @@
+---
+
+- name: Create user for regular login
+  #password generation should be run on a similar machine, macOS does not create the correct value
+  #python -c 'import crypt; print crypt.crypt("hello", "$1$SomeSalt$")'  $1$SomeSalt$L9W/KYWMIdn7AfcMZZVeU0
+  become: yes
+  user: name={{ user_name }} groups=sudo createhome=yes password={{ user_password }} comment="Default login user"
+
+
+# Copies the key from the user who is running ansible to the remote machine user
+- name: Add ssh public key to account authorized_keys file
+  authorized_key: user={{ user_name }} key="{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+  #become: yes
+
+
+#- debug: var=username_on_the_host

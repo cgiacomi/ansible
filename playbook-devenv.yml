@@ -1,0 +1,29 @@
+---
+# Playbook to create the development/running environment
+# for the software that will be run
+
+- hosts: all
+
+  #vars:
+  # - example_var: 'value'
+
+  # vars_files:
+  #   - pathto/vars.yml
+
+  # pre_tasks:
+  #   - shell: echo 'hello'
+
+  # roles:
+  #    - server
+
+  tasks:
+    - include: 'tasks/install_nginx.yml'
+    - include: 'tasks/install_mongodb.yml'
+    - include: 'tasks/install_nodejs.yml'
+    - include: 'tasks/install_pm2.yml'
+
+  # post_tasks:
+  #   - shell: echo 'goodbye'
+
+  handlers:
+    - include: 'handlers/main.yml'
