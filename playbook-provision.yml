@@ -11,7 +11,6 @@
     #password generation should be run on a similar machine, macOS does not create the correct value
     #python -c 'import crypt; print crypt.crypt("hello", "$1$SomeSalt$")'
     - user_password: $1$SomeSalt$L9W/KYWMIdn7AfcMZZVeU0
-    - ntp_server: [0.ubuntu.pool.ntp.org, 1.ubuntu.pool.ntp.org]
 
   # vars_files:
   #   - pathto/vars.yml

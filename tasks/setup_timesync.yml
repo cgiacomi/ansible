@@ -1,8 +1,8 @@
 ---
 # Installs Time synch on the server
 
-- name: Set timezone to Europe/Copenhagen
-  timezone: name=Europe/Copenhagen
+- name: Set timezone to Europe/Rome
+  timezone: name=Europe/Rome
   notify:
     - restart cron
 
