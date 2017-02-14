@@ -4,13 +4,8 @@
 
 - hosts: all
 
-  vars:
-    - ssh_port: 22
-    - allowed_users: demo vagrant
-    - user_name: demo
-    #password generation should be run on a similar machine, macOS does not create the correct value
-    #python -c 'import crypt; print crypt.crypt("hello", "$1$SomeSalt$")'
-    - user_password: $1$SomeSalt$L9W/KYWMIdn7AfcMZZVeU0
+  #vars:
+  # - example_var: 'value'
 
   # vars_files:
   #   - pathto/vars.yml
@@ -27,8 +22,6 @@
     - include: 'tasks/install_csf.yml'
     - include: 'tasks/setup_firewall.yml'
     - include: 'tasks/setup_timesync.yml'
-
-
 
   # post_tasks:
   #   - shell: echo 'goodbye'

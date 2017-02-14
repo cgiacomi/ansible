@@ -14,9 +14,21 @@
   when: csf_present|failed
 
 
-- name: Download CSF and unarchive files
-  unarchive: src=https://download.configserver.com/csf.tgz dest=/tmp/csf remote_src=yes
-  when: csf_present|failed
+# - name: Download CSF and unarchive files
+#   unarchive: src=https://download.configserver.com/csf.tgz dest=/tmp/csf remote_src=yes
+#   when: csf_present|failed
+
+
+- name: download csf
+  get_url:
+    url: https://download.configserver.com/csf.tgz
+    dest: /tmp/csf
+    mode: 0440
+
+
+- name: Uncompress csf download
+  become: yes
+  command: tar -xvzf /tmp/csf/csf.tgz -C /tmp/csf/
 
 
 - name: Disable UFW if present
