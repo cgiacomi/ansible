@@ -1,10 +1,20 @@
 
-[vagrant]
+[backend_api]
 192.168.33.11    ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
 
-[vagrant:vars]
+[backend_api:vars]
 ansible_python_interpreter=/usr/bin/python3
 user_name=demo
 allowed_users=demo vagrant
 user_password=$1$SomeSalt$L9W/KYWMIdn7AfcMZZVeU0
 ssh_port=22
+tcp_ports_in=53,80,443,8443,9418,25069
+tcp_ports_out=53,80,443,9418,25069
+udp_ports_in=53
+udp_ports_out=53,123
+
+
+[front_end]
+192.168.33.11    ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[front_end:vars]

@@ -1,23 +1,23 @@
 ---
 # Setup CSF
 
-- name: Setup CFS TCP ports IN 53,80,443,8443,9418,25069
-  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_IN =" line="TCP_IN = \"53,80,443,8443,9418,25069\""
+- name: Setup CFS TCP ports IN {{ tcp_ports_in }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_IN =" line="TCP_IN = \"{{ tcp_ports_in }}\""
   become: yes
 
 
-- name: Setup CFS TCP ports OUT 53,80,443,8443,9418,25069
-  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_OUT =" line="TCP_OUT = \"53,80,443,8443,9418,25069\""
+- name: Setup CFS TCP ports OUT {{ tcp_ports_out }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_OUT =" line="TCP_OUT = \"{{ tcp_ports_out }}\""
   become: yes
 
 
-- name: Setup CFS UDP ports IN 53
-  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53\""
+- name: Setup CFS UDP ports IN {{ udp_ports_in }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"{{ udp_ports_in }}\""
   become: yes
 
 
-- name: Setup CFS UDP ports OUT 53,123
-  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53,123\""
+- name: Setup CFS UDP ports OUT {{ udp_ports_out }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"{{ udp_ports_out }}\""
   become: yes
 
 
@@ -31,23 +31,23 @@
   become: yes
 
 
-- name: Setup CFS TCP6 ports IN 53,80,443,9418,25069
-  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_IN =" line="TCP_IN = \"53,80,443,8443,9418,25069\""
+- name: Setup CFS TCP6 ports IN {{ tcp_ports_in }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_IN =" line="TCP_IN = \"{{ tcp_ports_in }}\""
   become: yes
 
 
-- name: Setup CFS TCP6 ports OUT 53,80,443,9418,25069
-  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_OUT =" line="TCP_OUT = \"53,80,443,8443,9418,25069\""
+- name: Setup CFS TCP6 ports OUT {{ tcp_ports_out }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^TCP_OUT =" line="TCP_OUT = \"{{ tcp_ports_out }}\""
   become: yes
 
 
-- name: Setup CFS UDP6 ports IN 53
-  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53\""
+- name: Setup CFS UDP6 ports IN {{ udp_ports_in }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"{{ udp_ports_in }}\""
   become: yes
 
 
-- name: Setup CFS UDP6 ports OUT 53,123
-  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"53,123\""
+- name: Setup CFS UDP6 ports OUT {{ udp_ports_out }}
+  lineinfile: dest=/etc/csf/csf.conf regexp="^UDP_IN =" line="UDP_IN = \"{{ udp_ports_out }}\""
   become: yes
 
 
